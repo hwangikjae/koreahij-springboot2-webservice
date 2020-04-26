@@ -11,12 +11,14 @@ public class Posts2SaveRequestDto {
     private String title2;
     private String content2;
     private String author2;
+    private String delyn;
 
     @Builder
-    public Posts2SaveRequestDto(String title2, String content2, String author2){
+    public Posts2SaveRequestDto(String title2, String content2, String author2, String delyn){
         this.title2 = title2;
         this.content2 = content2;
         this.author2 = author2;
+        this.delyn = delyn;
     }
 
     public Posts2 toEntity(){
@@ -24,6 +26,7 @@ public class Posts2SaveRequestDto {
                 .title2(title2)
                 .content2(content2)
                 .author2(author2)
+                .delyn(delyn)
                 .build();
     }
 }

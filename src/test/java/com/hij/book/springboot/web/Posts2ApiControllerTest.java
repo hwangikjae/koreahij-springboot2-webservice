@@ -50,6 +50,7 @@ public class Posts2ApiControllerTest {
                 .title2(title2)
                 .content2(content2)
                 .author2("FUCK")
+                .delyn("N")
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts2";

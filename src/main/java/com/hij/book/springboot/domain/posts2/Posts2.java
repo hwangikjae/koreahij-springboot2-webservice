@@ -23,16 +23,22 @@ public class Posts2 extends BaseTimeEntity {
 
     private String author2;
 
+    private String delyn;
+
     @Builder
-    public Posts2(String title2, String content2, String author2){
+    public Posts2(String title2, String content2, String author2, String delyn){
         this.title2 = title2;
         this.content2 = content2;
         this.author2 = author2;
+        this.delyn = delyn;
     }
 
     public void update(String title2, String author2){
         this.title2 = title2;
         this.author2 = author2;
+    }
+    public void delete(String delyn){
+        this.delyn = delyn;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.hij.book.springboot.web;
 
 import com.hij.book.springboot.service.posts2.Posts2Service;
+import com.hij.book.springboot.web.dto.Posts2DeleteRequestDto;
 import com.hij.book.springboot.web.dto.Posts2ResponseDto;
 import com.hij.book.springboot.web.dto.Posts2SaveRequestDto;
 import com.hij.book.springboot.web.dto.Posts2UpdateRequestDto;
@@ -18,9 +19,14 @@ public class Posts2ApiController {
         return posts2Service.save(requestDto);
     }
 
-    @PutMapping("/api/v1/posts2/{id}")
+    @PutMapping("/api/v1/posts2/update/{id}")
     public Long update(@PathVariable Long id, @RequestBody Posts2UpdateRequestDto requestDto){
         return posts2Service.update(id, requestDto);
+    }
+
+    @PutMapping("/api/v1/posts2/delete/{id}")
+    public Long delete(@PathVariable Long id, @RequestBody Posts2DeleteRequestDto requestDto){
+        return posts2Service.delete(id, requestDto);
     }
 
     @GetMapping("/api/v1/posts2/{id}")
