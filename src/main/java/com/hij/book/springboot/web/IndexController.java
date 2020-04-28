@@ -1,5 +1,6 @@
 package com.hij.book.springboot.web;
 
+import com.hij.book.springboot.config.auth.LoginUser;
 import com.hij.book.springboot.config.auth.dto.SessionUser;
 import com.hij.book.springboot.service.posts.PostsService;
 import com.hij.book.springboot.service.posts2.Posts2Service;
@@ -32,11 +33,13 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
         model.addAttribute("posts2", posts2Service.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");//CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성했다.
+        //@LoginUser 쓰면서 안씀.
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");//CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성했다.
         //즉 로그인 성공시, httpSession.getAttribute("user")에서 값을 가져올 수 있다.
+
         if(user != null){   //세션에 저장된 값이 있을 때만 모델에 userName으로 등록한다.
             //세션에 저장된 값이 없으면 모델에 아무런 값이 없는 상태이므로 로그인 버튼이 보이게 된다!
             model.addAttribute("userName", user.getName());
@@ -59,3 +62,6 @@ public class IndexController {
     }
 
 }
+//@LoginUser SessionUser user
+//기존 SessionUser user = (SessionUser) httpSession.getAttribute("user"); 로 가져오던 세션 정보 값이 개선되었다.
+//이제는 어는 컨트롤러든지 @LoginUser만 사용하면 세션정보를 가져올 수 있게 되었다.
